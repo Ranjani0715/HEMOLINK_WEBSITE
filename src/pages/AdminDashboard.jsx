@@ -71,17 +71,17 @@ function AdminOverview() {
     >
       <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8">
         <div>
-           <div className="flex items-center gap-2 text-xs font-mono text-slate-400 mb-2 uppercase tracking-[0.3em]">
+           <div className="flex items-center gap-2 text-xs font-mono text-slate-400 mb-2 uppercase tracking-widest">
             <Server size={14} /> Node: AIS-GLOBAL-MASTER
           </div>
-          <h1 className="text-4xl font-black text-slate-900 tracking-tighter">System <span className="italic font-serif text-red-600">Command</span> Center</h1>
-          <p className="text-sm font-mono text-slate-400 uppercase tracking-widest mt-2">
+          <h1 className="text-4xl font-black text-slate-900 tracking-tight">System <span className="italic font-serif text-red-600">Command</span> Center</h1>
+          <p className="text-sm font-medium text-slate-400 mt-2">
             Java 21 • Hibernate 6.4 • React 19 • MySQL 8
           </p>
         </div>
         <div className="flex gap-4">
-           <button className="px-8 py-4 bg-red-600 text-white rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-black transition-all shadow-xl shadow-red-100">Broadcast Alert</button>
-           <button className="px-8 py-4 bg-white border border-slate-200 rounded-2xl text-[10px] font-black uppercase tracking-widest flex items-center gap-2">
+           <button className="px-8 py-4 bg-red-600 text-white rounded-2xl text-[10px] font-bold uppercase tracking-widest hover:bg-black transition-all shadow-xl shadow-red-100">Broadcast Alert</button>
+           <button className="px-8 py-4 bg-white border border-slate-200 rounded-2xl text-[10px] font-bold uppercase tracking-widest flex items-center gap-2">
               <RefreshCw size={14} /> Reset Cache
            </button>
         </div>
@@ -96,8 +96,8 @@ function AdminOverview() {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
         <div className="lg:col-span-2 space-y-10">
-           <section className="bg-white rounded-[2.5rem] border border-slate-100 p-8 shadow-sm">
-              <h2 className="text-xl font-black text-slate-900 mb-8 flex items-center gap-2">
+           <section className="bg-white rounded-3xl border border-slate-100 p-8 shadow-sm">
+              <h2 className="text-xl font-bold text-slate-900 mb-8 flex items-center gap-2 tracking-tight">
                  <BarChart3 size={24} className="text-indigo-600" /> System Load Monitor
               </h2>
               <div className="h-[300px]">
@@ -110,53 +110,53 @@ function AdminOverview() {
                          </linearGradient>
                        </defs>
                        <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
-                       <XAxis dataKey="time" stroke="#94a3b8" fontSize={10} fontWeight="bold" axisLine={false} tickLine={false} />
-                       <YAxis stroke="#94a3b8" fontSize={10} fontWeight="bold" axisLine={false} tickLine={false} />
-                       <Tooltip contentStyle={{ borderRadius: '16px', border: 'none' }} />
+                       <XAxis dataKey="time" stroke="#94a3b8" fontSize={10} fontWeight="600" axisLine={false} tickLine={false} />
+                       <YAxis stroke="#94a3b8" fontSize={10} fontWeight="600" axisLine={false} tickLine={false} />
+                       <Tooltip contentStyle={{ borderRadius: '16px', border: 'none', fontWeight: 'bold' }} />
                        <Area type="monotone" dataKey="load" stroke="#6366f1" strokeWidth={4} fill="url(#colorLoad)" />
                     </AreaChart>
                  </ResponsiveContainer>
               </div>
            </section>
 
-           <section className="bg-slate-900 rounded-[2.5rem] p-10 text-white relative overflow-hidden">
+           <section className="bg-slate-900 rounded-3xl p-10 text-white relative overflow-hidden">
               <div className="absolute top-0 right-0 p-10 opacity-10">
                  <Terminal size={150} />
               </div>
-              <div className="flex items-center gap-3 mb-10 text-[xs] font-black uppercase tracking-[0.4em] text-red-500">
+              <div className="flex items-center gap-3 mb-10 text-[xs] font-bold uppercase tracking-widest text-red-500">
                  <Lock size={16} /> Encrypted System Logs
               </div>
               <div className="space-y-6 max-h-[300px] overflow-y-auto scrollbar-hide font-mono text-[10px]">
                  {logs.map((log, i) => (
                     <div key={i} className="flex gap-4 border-l-2 border-white/5 pl-4 hover:border-red-500 transition-colors py-2">
                         <span className="text-white/30">{log.time}</span>
-                        <span className="text-indigo-400 font-black">[{log.sys}]</span>
+                        <span className="text-indigo-400 font-bold">[{log.sys}]</span>
                         <span className="text-slate-400">{log.msg}</span>
                     </div>
                  ))}
-                 <div className="text-green-500 animate-pulse tracking-widest mt-4">_ STANDBY FOR NEW PACKETS...</div>
+                 <div className="text-green-500 animate-pulse tracking-widest mt-4 italic">_ STANDBY FOR NEW PACKETS...</div>
               </div>
            </section>
         </div>
 
         <aside className="space-y-8">
-           <div className="bg-white rounded-[2.5rem] border border-slate-100 p-8 shadow-sm">
-              <h4 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-8">Quick Verification</h4>
+           <div className="bg-white rounded-3xl border border-slate-100 p-8 shadow-sm">
+              <h4 className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-8">Quick Verification</h4>
               <div className="space-y-6">
                  <VerifySnippet name="Marcus Ray" type="O-" />
                  <VerifySnippet name="Sarah Kent" type="AB+" />
                  <VerifySnippet name="Alex Chen" type="B+" />
               </div>
-              <Link to="verify" className="w-full mt-10 py-5 bg-slate-50 flex items-center justify-center gap-2 rounded-2xl text-slate-900 font-bold text-xs uppercase tracking-widest hover:bg-slate-900 hover:text-white transition-all">
+              <Link to="verify" className="w-full mt-10 py-5 bg-slate-50 flex items-center justify-center gap-2 rounded-2xl text-slate-900 font-bold text-[10px] uppercase tracking-widest hover:bg-slate-900 hover:text-white transition-all">
                 Full Queue <ChevronRight size={14} />
               </Link>
            </div>
 
-           <div className="bg-gradient-to-br from-red-600 to-red-800 rounded-[2.5rem] p-10 text-white">
-              <h4 className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.3em] mb-4">
+           <div className="bg-gradient-to-br from-red-600 to-red-800 rounded-3xl p-10 text-white shadow-xl shadow-red-100">
+              <h4 className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest mb-4">
                  <AlertTriangle size={14} /> Regional Hotspot
               </h4>
-              <h3 className="text-xl font-black mb-4 tracking-tighter italic underline decoration-white/20 underline-offset-4">Emergency Spike in Zone 04</h3>
+              <h3 className="text-xl font-black mb-4 tracking-tight italic underline decoration-white/20 underline-offset-4">Emergency Spike in Zone 04</h3>
               <p className="text-xs text-white/70 leading-relaxed font-medium">
                  Blood demand has increased by 40% in the last 2 hours. AI matching engine is prioritizing all donors within 2km radius.
               </p>
@@ -181,34 +181,34 @@ function VerificationQueue() {
 
   return (
     <div className="space-y-10">
-       <div className="flex justify-between items-end">
+       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4">
           <div>
-             <h2 className="text-3xl font-black text-slate-900 tracking-tight tracking-tighter">Verification <span className="text-blue-600">Vault</span></h2>
-             <p className="text-slate-400 font-bold text-sm italic">Reviewing medical authenticity credentials</p>
+             <h2 className="text-3xl font-black text-slate-900 tracking-tight">Verification <span className="text-blue-600">Vault</span></h2>
+             <p className="text-slate-400 font-semibold text-sm italic">Reviewing medical authenticity credentials</p>
           </div>
-          <button onClick={() => { setQueue([]); alert('Batch Approved.'); }} className="px-6 py-3 bg-red-600 text-white rounded-xl text-[10px] font-black uppercase">Batch Approve</button>
+          <button onClick={() => { setQueue([]); alert('Batch Approved.'); }} className="px-6 py-3 bg-red-600 text-white rounded-xl text-[10px] font-bold uppercase tracking-widest">Batch Approve</button>
        </div>
 
        <div className="space-y-4">
           {queue.length === 0 ? (
             <div className="p-20 text-center bg-slate-50 rounded-[3rem] border border-dashed border-slate-200">
                <CheckCircle2 size={48} className="mx-auto text-green-500 mb-4" />
-               <p className="font-black text-slate-400 uppercase tracking-widest">Vault Cleared. No Pending Records.</p>
+               <p className="font-bold text-slate-400 uppercase tracking-widest">Vault Cleared. No Pending Records.</p>
             </div>
           ) : queue.map((item, i) => (
-             <div key={i} className="bg-white p-8 rounded-[2.5rem] border border-slate-100 flex flex-col md:flex-row justify-between items-center gap-8 hover:shadow-2xl transition-all group">
-                <div className="flex items-center gap-6">
-                   <div className="w-16 h-16 rounded-3xl bg-slate-100 text-slate-400 flex items-center justify-center font-black group-hover:bg-blue-600 group-hover:text-white transition-colors">{item.name[0]}</div>
+             <div key={i} className="bg-white p-8 rounded-3xl border border-slate-100 flex flex-col md:flex-row justify-between items-center gap-8 hover:shadow-xl transition-all group">
+                <div className="flex items-center gap-6 w-full md:w-auto">
+                   <div className="w-16 h-16 rounded-3xl bg-slate-100 text-slate-400 flex items-center justify-center font-bold text-xl group-hover:bg-blue-600 group-hover:text-white transition-colors">{item.name[0]}</div>
                    <div>
-                      <div className="font-black text-slate-900 text-lg uppercase tracking-tight">{item.name}</div>
+                      <div className="font-bold text-slate-900 text-lg tracking-tight uppercase">{item.name}</div>
                       <div className="text-[10px] font-bold text-slate-400 mt-1">{item.role} • ID: {item.id}</div>
-                      <div className="mt-2 text-[10px] text-slate-500 italic">Bio: {item.bio}</div>
+                      <div className="mt-2 text-[10px] text-slate-500 font-medium italic">Bio: {item.bio}</div>
                    </div>
                 </div>
-                <div className="flex gap-4">
+                <div className="flex gap-4 w-full md:w-auto justify-end">
                    <button onClick={() => handleAction(item.id, 'APPROVED')} className="p-4 bg-green-50 text-green-600 rounded-2xl hover:bg-green-600 hover:text-white transition-all"><CheckCircle2 size={24} /></button>
                    <button onClick={() => handleAction(item.id, 'REJECTED')} className="p-4 bg-red-50 text-red-600 rounded-2xl hover:bg-red-600 hover:text-white transition-all"><XCircle size={24} /></button>
-                   <button className="px-8 py-4 border-2 border-slate-100 rounded-2xl text-[10px] font-black uppercase italic tracking-widest hover:bg-slate-900 hover:text-white">Review Profile</button>
+                   <button className="px-6 py-4 border border-slate-200 rounded-2xl text-[10px] font-bold uppercase tracking-widest hover:bg-slate-900 hover:text-white transition-all">Review Profile</button>
                 </div>
              </div>
           ))}
@@ -305,12 +305,12 @@ function GlobalAnalytics() {
 // Helpers
 function StatCard({ icon, label, value, color }) {
   return (
-    <div className="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm transition-all hover:-translate-y-2 group">
+    <div className="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm transition-all hover:-translate-y-2 group">
        <div className={`w-12 h-12 rounded-2xl bg-slate-50 flex items-center justify-center mb-6 transition-transform group-hover:rotate-12 ${color}`}>
           {icon}
        </div>
-       <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">{label}</div>
-       <div className={`text-4xl font-black tracking-tighter ${color}`}>{value}</div>
+       <div className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">{label}</div>
+       <div className={`text-4xl font-black tracking-tight ${color}`}>{value}</div>
     </div>
   );
 }
@@ -319,10 +319,10 @@ function VerifySnippet({ name, type }) {
   return (
     <div className="flex items-center justify-between group">
        <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-lg bg-red-600 text-white flex items-center justify-center font-black text-xs">{type}</div>
-          <div className="text-[10px] font-black text-slate-900 uppercase">{name}</div>
+          <div className="w-8 h-8 rounded-lg bg-red-600 text-white flex items-center justify-center font-bold text-xs">{type}</div>
+          <div className="text-[10px] font-bold text-slate-900 uppercase tracking-tight">{name}</div>
        </div>
-       <button className="text-blue-600 font-black text-[10px] uppercase tracking-widest">Verify</button>
+       <button className="text-blue-600 font-bold text-[10px] uppercase tracking-widest hover:text-blue-800">Verify</button>
     </div>
   );
 }

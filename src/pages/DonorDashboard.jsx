@@ -6,7 +6,7 @@ import {
   Droplet, Activity, Award, Bell, MapPin, Clock, 
   ShieldCheck, Zap, User, Heart, RefreshCw, ChevronRight,
   History, Radio, BarChart3, Star, Download, ShieldAlert,
-  ArrowUpRight, HeartPulse, Brain
+  ArrowUpRight, HeartPulse, Brain, Hospital
 } from 'lucide-react';
 import { 
   LineChart, Line, AreaChart, Area, XAxis, YAxis, 
@@ -98,11 +98,11 @@ function Overview({ donorData, matches, toggleAvailability, acceptMatch }) {
     >
       <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8">
         <div>
-          <h1 className="text-4xl font-black text-slate-900 tracking-tighter leading-none mb-4">
-            Welcome Back, <span className="text-red-600 italic font-serif underline decoration-slate-200 underline-offset-8 decoration-4">{user?.displayName?.split(' ')[0]}</span>
+          <h1 className="text-4xl font-black text-slate-900 tracking-tight leading-none mb-4">
+            Welcome Back, <span className="text-red-600 italic font-serif underline decoration-red-100 underline-offset-4 decoration-2">{user?.displayName?.split(' ')[0]}</span>
           </h1>
-          <div className="flex items-center gap-4 text-xs font-bold text-slate-400">
-             <span className="flex items-center gap-1.5 px-3 py-1 bg-white border border-slate-100 rounded-full">
+          <div className="flex flex-wrap items-center gap-4 text-xs font-bold text-slate-400">
+             <span className="flex items-center gap-1.5 px-3 py-1 bg-white border border-slate-100 rounded-full shadow-sm">
                 <ShieldCheck size={14} className="text-green-500" /> Account Verified
              </span>
              <span className="flex items-center gap-1.5 px-3 py-1 bg-red-50 text-red-600 rounded-full">
@@ -114,9 +114,9 @@ function Overview({ donorData, matches, toggleAvailability, acceptMatch }) {
         <div className="flex items-center gap-4">
            <button 
              onClick={toggleAvailability}
-             className={`flex items-center gap-3 px-8 py-4 rounded-[1.5rem] border-2 transition-all shadow-xl active:scale-95 ${
+             className={`flex items-center gap-3 px-8 py-4 rounded-full border-2 transition-all shadow-lg active:scale-95 ${
                donorData.isAvailable 
-               ? 'bg-green-600 border-green-500 text-white font-black shadow-green-100' 
+               ? 'bg-green-600 border-green-500 text-white font-bold shadow-green-100' 
                : 'bg-white border-slate-100 text-slate-400 font-bold shadow-slate-100'
              }`}
            >
@@ -136,32 +136,32 @@ function Overview({ donorData, matches, toggleAvailability, acceptMatch }) {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
         <div className="lg:col-span-2 space-y-10">
            {/* Section: Live Emergencies */}
-           <section className="bg-white rounded-[2.5rem] border border-slate-100 p-8 shadow-sm">
+           <section className="bg-white rounded-3xl border border-slate-100 p-8 shadow-sm">
               <div className="flex justify-between items-center mb-8">
-                 <h2 className="text-xl font-black text-slate-900 flex items-center gap-2">
+                 <h2 className="text-xl font-bold text-slate-900 flex items-center gap-2 tracking-tight">
                     <ShieldAlert size={24} className="text-red-600" /> Active SOS Matches
                  </h2>
-                 <Link to="emergencies" className="text-xs font-black text-blue-600 uppercase tracking-widest hover:underline">View All</Link>
+                 <Link to="emergencies" className="text-xs font-bold text-blue-600 uppercase tracking-widest hover:underline">View All</Link>
               </div>
               
               <div className="space-y-4">
                  {matches.map(match => (
-                    <div key={match.id} className="p-6 bg-slate-50 border-2 border-transparent hover:border-red-500/20 hover:bg-white transition-all rounded-[2rem] flex flex-col sm:flex-row justify-between items-center gap-6 group">
-                        <div className="flex gap-4 items-center">
-                           <div className="w-12 h-12 rounded-2xl bg-red-600 text-white flex items-center justify-center font-black text-xl shadow-lg">
+                    <div key={match.id} className="p-6 bg-slate-50 border border-transparent hover:border-red-500/20 hover:bg-white transition-all rounded-2xl flex flex-col sm:flex-row justify-between items-center gap-6 group">
+                        <div className="flex gap-4 items-center w-full sm:w-auto">
+                           <div className="w-12 h-12 rounded-xl bg-red-600 text-white flex items-center justify-center font-bold text-xl shadow-lg">
                               {match.bloodType}
                            </div>
                            <div>
                               <div className="flex items-center gap-2">
-                                 <h4 className="font-black text-slate-900">{match.hospitalName}</h4>
-                                 <span className="px-2 py-0.5 bg-red-100 text-red-600 text-[8px] font-black uppercase rounded-full">{match.priority}</span>
+                                 <h4 className="font-bold text-slate-900 tracking-tight">{match.hospitalName}</h4>
+                                 <span className="px-2 py-0.5 bg-red-100 text-red-600 text-[8px] font-bold uppercase rounded-full tracking-widest">{match.priority}</span>
                               </div>
-                              <div className="text-[10px] font-bold text-slate-400 mt-1">Patient: {match.patientName} • {match.distance}</div>
+                              <div className="text-[10px] font-semibold text-slate-400 mt-1 uppercase tracking-tight">Patient: {match.patientName} • {match.distance}</div>
                            </div>
                         </div>
                         <button 
                            onClick={() => acceptMatch(match.id)}
-                           className="px-6 py-3 bg-white border-2 border-slate-200 rounded-xl text-[10px] font-black uppercase tracking-widest group-hover:bg-red-600 group-hover:text-white group-hover:border-red-600 transition-all"
+                           className="w-full sm:w-auto px-6 py-3 bg-white border border-slate-200 rounded-xl text-[10px] font-bold uppercase tracking-widest group-hover:bg-red-600 group-hover:text-white group-hover:border-red-600 transition-all shadow-sm"
                         >
                            Accept Case
                         </button>
@@ -171,19 +171,19 @@ function Overview({ donorData, matches, toggleAvailability, acceptMatch }) {
            </section>
 
            {/* Section: AI Prediction */}
-           <section className="bg-gradient-to-br from-slate-900 to-slate-800 rounded-[2.5rem] p-10 text-white relative overflow-hidden">
+           <section className="bg-gradient-to-br from-slate-900 to-slate-800 rounded-3xl p-10 text-white relative overflow-hidden shadow-xl">
               <div className="absolute top-0 right-0 p-10 opacity-10">
                  <Brain size={120} />
               </div>
               <div className="relative z-10">
-                 <div className="flex items-center gap-2 text-[10px] font-black text-amber-500 uppercase tracking-[0.3em] mb-4">
+                 <div className="flex items-center gap-2 text-[10px] font-bold text-amber-500 uppercase tracking-widest mb-4">
                     <Zap size={14} fill="currentColor" /> AI Recommendation Engine
                  </div>
-                 <h3 className="text-2xl font-black mb-6">High Demand Predicted in <span className="text-red-500 italic">Central District</span></h3>
-                 <p className="text-slate-400 text-sm mb-8 leading-relaxed max-w-lg">
+                 <h3 className="text-2xl font-bold mb-6 tracking-tight">High Demand Predicted in <span className="text-red-500 italic">Central District</span></h3>
+                 <p className="text-slate-400 text-sm mb-8 leading-relaxed max-w-lg font-medium">
                     Based on festive trends and historical traffic data, we anticipate an 80% increase in O+ requirement over the next 48 hours.
                  </p>
-                 <button className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-white/50 hover:text-white transition-colors">
+                 <button className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-white/50 hover:text-white transition-colors">
                     View Full Analysis <ArrowUpRight size={16} />
                  </button>
               </div>
@@ -219,49 +219,49 @@ function Overview({ donorData, matches, toggleAvailability, acceptMatch }) {
 function Emergencies({ matches, acceptMatch }) {
   return (
     <div className="space-y-8">
-      <div className="flex justify-between items-end">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4">
         <div>
           <h2 className="text-3xl font-black text-slate-900 tracking-tight">Emergency <span className="text-red-600">Ops</span></h2>
-          <p className="text-slate-400 font-bold text-sm">Priority matching for immediate impact</p>
+          <p className="text-slate-400 font-semibold text-sm italic">Priority matching for immediate impact</p>
         </div>
-        <div className="flex gap-2 text-[10px] font-black uppercase tracking-widest text-slate-400">
+        <div className="flex gap-2 text-[10px] font-bold uppercase tracking-widest text-slate-400">
            Sorted by: <span className="text-slate-900">Distance + Priority</span>
         </div>
       </div>
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {matches.map(match => (
-          <div key={match.id} className="bg-white border-2 border-slate-100 rounded-[2.5rem] p-8 hover:border-red-500/30 transition-all shadow-sm group">
+          <div key={match.id} className="bg-white border border-slate-100 rounded-3xl p-8 hover:border-red-500/30 transition-all shadow-sm group">
              <div className="flex justify-between items-start mb-6">
-                <div className="w-16 h-16 bg-red-600 rounded-3xl flex items-center justify-center font-black text-2xl text-white shadow-xl">
+                <div className="w-16 h-16 bg-red-600 rounded-2xl flex items-center justify-center font-bold text-2xl text-white shadow-lg">
                     {match.bloodType}
                 </div>
-                <div className={`px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest ${
+                <div className={`px-4 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest ${
                    match.priority === 'CRITICAL' ? 'bg-red-600 text-white animate-pulse' : 'bg-amber-100 text-amber-600'
                 }`}>
                    {match.priority} NEED
                 </div>
              </div>
              
-             <h3 className="text-2xl font-black text-slate-900 group-hover:text-red-600 transition-colors">{match.hospitalName}</h3>
-             <div className="flex gap-4 mt-2 text-xs font-bold text-slate-400 mb-8">
+             <h3 className="text-2xl font-bold text-slate-900 group-hover:text-red-600 transition-colors uppercase tracking-tight italic">{match.hospitalName}</h3>
+             <div className="flex gap-4 mt-2 text-xs font-semibold text-slate-400 mb-8 uppercase tracking-tight">
                 <span className="flex items-center gap-1.5"><MapPin size={14} /> {match.distance}</span>
                 <span className="flex items-center gap-1.5"><Clock size={14} /> {match.time}</span>
              </div>
              
              <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100 mb-8">
-                <div className="text-[10px] font-black text-slate-400 uppercase mb-1">Patient Handle</div>
-                <div className="text-sm font-black text-slate-900 uppercase tracking-tight">{match.patientName}</div>
+                <div className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Patient Handle</div>
+                <div className="text-sm font-bold text-slate-900 uppercase tracking-tight">{match.patientName}</div>
              </div>
              
              <div className="flex gap-4">
                 <button 
                    onClick={() => acceptMatch(match.id)}
-                   className="flex-1 py-4 bg-red-600 text-white rounded-2xl font-black uppercase text-xs tracking-widest hover:bg-black transition-all shadow-lg shadow-red-100"
+                   className="flex-1 py-4 bg-red-600 text-white rounded-xl font-bold uppercase text-[10px] tracking-widest hover:bg-black transition-all shadow-lg shadow-red-100"
                 >
                    Accept SOS
                 </button>
-                <button className="px-6 py-4 bg-slate-100 rounded-2xl text-slate-900 font-black flex items-center justify-center">
+                <button className="px-6 py-4 bg-slate-100 rounded-xl text-slate-900 font-bold flex items-center justify-center hover:bg-slate-900 hover:text-white transition-all">
                    <ArrowUpRight size={20} />
                 </button>
              </div>
@@ -581,12 +581,12 @@ function StatCard({ icon, label, value, sub, color }) {
             color === 'blue' ? 'text-blue-600 bg-blue-50' :
             color === 'green' ? 'text-green-600 bg-green-50' : 'text-amber-600 bg-amber-50';
   return (
-    <div className="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm hover:shadow-xl transition-all group text-center">
+    <div className="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl transition-all group text-center">
        <div className={`w-14 h-14 rounded-2xl mx-auto flex items-center justify-center mb-6 transition-transform group-hover:rotate-12 ${c}`}>
           {icon}
        </div>
-       <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">{label}</div>
-       <div className="text-4xl font-black text-slate-900 tracking-tighter">{value}</div>
+       <div className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">{label}</div>
+       <div className="text-4xl font-black text-slate-900 tracking-tight">{value}</div>
        <div className="text-[10px] font-bold text-slate-300 mt-1 uppercase italic">{sub}</div>
     </div>
   );
@@ -641,27 +641,29 @@ function NearbyHospitals() {
 
   return (
     <div className="space-y-10">
-      <div>
-        <h2 className="text-3xl font-black text-slate-900 tracking-tight">Facility <span className="text-blue-600">Radar</span></h2>
-        <p className="text-slate-400 font-bold text-sm italic">Nearby GPS-linked medical centers in AIS-GRID</p>
+      <div className="flex justify-between items-end">
+        <div>
+          <h2 className="text-3xl font-black text-slate-900 tracking-tight">Facility <span className="text-blue-600">Radar</span></h2>
+          <p className="text-slate-400 font-semibold text-sm italic">Nearby GPS-linked medical centers in AIS-GRID</p>
+        </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {hospitals.map((h, i) => (
-          <div key={i} className="bg-white p-10 rounded-[2.5rem] border border-slate-100 shadow-sm hover:shadow-2xl transition-all group relative overflow-hidden">
+          <div key={i} className="bg-white p-10 rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl transition-all group relative overflow-hidden">
              <div className="absolute top-0 right-0 p-10 opacity-5 group-hover:rotate-12 transition-transform">
                 <Hospital size={100} />
              </div>
-             <div className={`px-3 py-1 rounded-full text-[8px] font-black uppercase tracking-widest inline-block mb-6 ${
+             <div className={`px-3 py-1 rounded-full text-[8px] font-bold uppercase tracking-widest inline-block mb-6 ${
                h.status === 'CRITICAL_NEEDED' ? 'bg-red-100 text-red-600' : 'bg-green-100 text-green-600'
              }`}>
                {h.status}
              </div>
-             <h3 className="text-xl font-black text-slate-900 mb-2 uppercase italic">{h.name}</h3>
-             <div className="flex items-center gap-2 text-xs font-bold text-slate-400 mb-6">
+             <h3 className="text-xl font-bold text-slate-900 mb-2 uppercase italic tracking-tight">{h.name}</h3>
+             <div className="flex items-center gap-2 text-xs font-bold text-slate-400 mb-6 uppercase tracking-tight">
                 <MapPin size={14} /> {h.dist} • {h.address}
              </div>
-             <button className="w-full py-4 bg-slate-900 text-white rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-red-600 transition-all">Navigate to Site</button>
+             <button className="w-full py-4 bg-slate-900 text-white rounded-xl font-bold text-[10px] uppercase tracking-widest hover:bg-red-600 transition-all shadow-lg active:scale-95">Navigate to Site</button>
           </div>
         ))}
       </div>
@@ -680,13 +682,13 @@ function ReliabilityCard({ label, value }) {
 
 function AchievementBadge({ title, icon, desc, color }) {
   return (
-    <div className="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm flex items-center gap-6 group hover:shadow-xl transition-all">
+    <div className="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm flex items-center gap-6 group hover:shadow-xl transition-all">
        <div className={`w-16 h-16 rounded-2xl ${color} text-white flex items-center justify-center flex-shrink-0 shadow-lg group-hover:scale-110 transition-transform`}>
           {icon}
        </div>
        <div>
-          <h4 className="font-black text-slate-900 uppercase tracking-tight">{title}</h4>
-          <p className="text-xs text-slate-400 font-medium">{desc}</p>
+          <h4 className="font-bold text-slate-900 uppercase tracking-tight">{title}</h4>
+          <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">{desc}</p>
        </div>
     </div>
   );

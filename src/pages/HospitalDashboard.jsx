@@ -153,29 +153,29 @@ function HospitalOverview({ activeRequests, setShowBroadcast }) {
     >
       <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8">
         <div>
-          <div className="flex items-center gap-2 text-[10px] font-black text-blue-600 mb-2 uppercase tracking-[0.4em]">
+          <div className="flex items-center gap-2 text-[10px] font-bold text-blue-600 mb-2 uppercase tracking-widest">
              <Server size={14} className="animate-pulse" /> Command Center: AIS-NODE-01
           </div>
-          <h1 className="text-4xl font-black text-slate-900 tracking-tighter leading-none mb-4">
+          <h1 className="text-4xl font-black text-slate-900 tracking-tight leading-none mb-4">
              Medical <span className="text-red-600 italic font-serif underline decoration-blue-100 underline-offset-8">Unit</span> Control
           </h1>
-          <p className="text-slate-400 font-bold text-xs italic">{user?.displayName || 'City General Hospital'}</p>
+          <p className="text-slate-400 font-semibold text-xs italic">{user?.displayName || 'City General Hospital'}</p>
         </div>
         
-        <div className="flex items-center gap-4">
+        <div className="flex flex-wrap items-center gap-4">
            <button 
              onClick={() => setShowBroadcast(true)}
-             className="flex items-center gap-3 px-10 py-5 bg-slate-900 hover:bg-red-600 text-white rounded-[2rem] font-black shadow-2xl transition-all active:scale-95 group"
+             className="flex items-center gap-3 px-10 py-5 bg-slate-900 hover:bg-red-600 text-white rounded-full font-bold shadow-xl transition-all active:scale-95 group"
            >
               <Radio size={24} className="group-hover:animate-pulse" />
               GEO BROADCAST
            </button>
            <Link 
              to="/request-blood"
-             className="flex items-center gap-3 px-10 py-5 bg-red-600 hover:bg-black text-white rounded-[2rem] font-black shadow-2xl shadow-red-200 transition-all active:scale-95 group"
+             className="flex items-center gap-3 px-10 py-5 bg-red-600 hover:bg-black text-white rounded-full font-bold shadow-xl shadow-red-200 transition-all active:scale-95 group"
            >
-             <ShieldAlert size={24} className="group-hover:rotate-12 transition-transform" />
-             TRIGGER CRITICAL SOS
+              <ShieldAlert size={24} className="group-hover:rotate-12 transition-transform" />
+              TRIGGER SOS
            </Link>
         </div>
       </div>
@@ -190,7 +190,7 @@ function HospitalOverview({ activeRequests, setShowBroadcast }) {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
         <div className="lg:col-span-2 space-y-10">
            {/* Section: Active Emergencies */}
-           <section className="bg-white rounded-[2.5rem] border border-slate-100 p-8 shadow-sm">
+           <section className="bg-white rounded-3xl border border-slate-100 p-8 shadow-sm">
              <div className="flex justify-between items-center mb-8">
                 <h2 className="text-xl font-black text-slate-900 flex items-center gap-2">
                    <Activity size={24} className="text-red-600" /> Active Emergency Operations
@@ -257,32 +257,32 @@ function HospitalOverview({ activeRequests, setShowBroadcast }) {
         </div>
 
         <aside className="space-y-8">
-           <div className="bg-white rounded-[2.5rem] border border-slate-100 p-8 shadow-sm">
-               <h4 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-8">Donor Response Radar</h4>
+           <div className="bg-white rounded-3xl border border-slate-100 p-8 shadow-sm">
+               <h4 className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-8">Donor Response Radar</h4>
                <div className="space-y-6">
                   <RadarItem name="David K." status="EN ROUTE" distance="1.2km" active />
                   <RadarItem name="Linda M." status="ACCEPTED" distance="3.4km" />
                   <RadarItem name="Sarah J." status="STANDBY" distance="5.0km" />
                </div>
-               <button className="w-full mt-10 py-5 bg-slate-50 rounded-2xl text-slate-900 font-bold text-xs uppercase tracking-widest hover:bg-red-50 hover:text-red-600 transition-all">
+               <button className="w-full mt-10 py-5 bg-slate-50 rounded-2xl text-slate-900 font-bold text-[10px] uppercase tracking-widest hover:bg-red-50 hover:text-red-600 transition-all">
                  Live Map View
                </button>
            </div>
 
-           <div className="bg-gradient-to-br from-blue-600 to-indigo-700 rounded-[2.5rem] p-8 text-white shadow-2xl relative overflow-hidden">
+           <div className="bg-gradient-to-br from-blue-600 to-indigo-700 rounded-3xl p-8 text-white shadow-xl relative overflow-hidden">
               <div className="absolute top-0 right-0 p-10 opacity-10">
                  <Zap size={80} fill="currentColor" />
               </div>
-              <h4 className="text-[10px] font-black mb-6 uppercase tracking-[0.3em] text-blue-200">AI Compatibility Factor</h4>
+              <h4 className="text-[10px] font-bold mb-6 uppercase tracking-widest text-blue-200 text-center">AI Compatibility Factor</h4>
               <div className="space-y-6">
                  <div className="flex justify-between items-end mb-2">
-                    <span className="text-xs font-bold text-white/70">Matching Optimization</span>
+                    <span className="text-[10px] font-bold text-white/70">Matching Optimization</span>
                     <span className="text-sm font-black text-white">97.4%</span>
                  </div>
                  <div className="h-2 w-full bg-white/10 rounded-full overflow-hidden">
                     <motion.div initial={{ width: 0 }} animate={{ width: '97.4%' }} className="h-full bg-blue-300" />
                  </div>
-                 <p className="text-[10px] text-blue-100 font-medium leading-relaxed italic">
+                 <p className="text-[10px] text-blue-100 font-medium leading-relaxed italic text-center">
                     "System successfully reduced response time by 4.2 mins using proximity-weighting."
                  </p>
               </div>
@@ -536,12 +536,12 @@ function StatCard({ icon, label, value, sub, color }) {
             color === 'blue' ? 'text-blue-600 bg-blue-50' :
             color === 'green' ? 'text-green-600 bg-green-50' : 'text-amber-600 bg-amber-50';
   return (
-    <div className="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm hover:shadow-xl transition-all group text-center">
+    <div className="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl transition-all group text-center">
        <div className={`w-14 h-14 rounded-2xl mx-auto flex items-center justify-center mb-6 transition-transform group-hover:rotate-12 ${c}`}>
           {icon}
        </div>
-       <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">{label}</div>
-       <div className="text-4xl font-black text-slate-900 tracking-tighter">{value}</div>
+       <div className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">{label}</div>
+       <div className="text-4xl font-black text-slate-900 tracking-tight">{value}</div>
        <div className="text-[10px] font-bold text-slate-300 mt-1 uppercase italic">{sub}</div>
     </div>
   );
@@ -551,16 +551,16 @@ function RadarItem({ name, status, distance, active }) {
   return (
     <div className="flex items-center justify-between group">
        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center font-black text-slate-400 group-hover:bg-blue-50 group-hover:text-blue-600 transition-colors">
+          <div className="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center font-bold text-slate-400 group-hover:bg-blue-50 group-hover:text-blue-600 transition-colors">
             {name[0]}
           </div>
           <div>
-             <div className="text-sm font-black text-slate-900">{name}</div>
+             <div className="text-sm font-bold text-slate-900 tracking-tight">{name}</div>
              <div className="text-[10px] text-slate-400 font-bold">{distance} away</div>
           </div>
        </div>
        <div className="text-right">
-          <div className={`text-[9px] font-black uppercase tracking-widest ${active ? 'text-red-600 animate-pulse' : 'text-blue-500'}`}>{status}</div>
+          <div className={`text-[9px] font-bold uppercase tracking-widest ${active ? 'text-red-600 animate-pulse' : 'text-blue-500'}`}>{status}</div>
        </div>
     </div>
   );
