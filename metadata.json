@@ -1,0 +1,10 @@
+{
+  "name": "HemoLink",
+  "description": "AI-Powered Smart Blood Donation & Emergency Response System. Connects donors, recipients, and hospitals with real-time matching, trust scoring, and emergency alerts.",
+  "requestFramePermissions": [
+    "geolocation"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
